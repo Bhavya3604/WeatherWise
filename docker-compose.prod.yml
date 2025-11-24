@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: weatherwise-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=WeatherWise API
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - DATABASE_URL=sqlite+aiosqlite:///./weatherwise.db
+      - SECRET_KEY=${SECRET_KEY:?SECRET_KEY is required}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY:?OPENWEATHER_API_KEY is required}
+      - ALLOWED_ORIGINS=["http://localhost:3000","http://your-ec2-ip:3000"]
+      - ML_MODEL_PATH=ml/models/weather_lstm.pt
+      - ML_SCALER_PATH=ml/models/scaler.pkl
+    volumes:
+      - weatherwise-data:/app/data
+      - ./backend/ml:/app/ml
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: weatherwise-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://your-ec2-ip:8000
+    depends_on:
+      - backend
+
+volumes:
+  weatherwise-data:
