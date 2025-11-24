@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: weatherwise-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:///./weatherwise.db
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY:?set-openweather-api-key}
+      - ALLOWED_ORIGINS=["http://localhost:3000"]
+      - ML_MODEL_PATH=ml/models/weather_lstm.pt
+      - ML_SCALER_PATH=ml/models/scaler.pkl
+    volumes:
+      - ./backend:/app
+      - ./ml:/app/ml
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: weatherwise-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+
