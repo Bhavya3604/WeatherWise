@@ -32,3 +32,28 @@ async def read_users(
     result = await db.execute(select(models.User).offset(skip).limit(limit))
     users = result.scalars().all()
     return users
+
+
+@router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_user(
+    user_id: int,
+    current_user: models.User = Depends(check_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Delete a user. Only for admins.
+    """
+    user = await db.get(models.User, user_id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found",
+        )
+    if user.id == current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot delete yourself",
+        )
+    
+    await db.delete(user)
+    await db.commit()
