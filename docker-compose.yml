@@ -12,7 +12,7 @@ services:
       - DATABASE_URL=sqlite+aiosqlite:///./weatherwise.db
       - SECRET_KEY=dev-secret-key-change-in-production
       - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY:?set-openweather-api-key}
-      - ALLOWED_ORIGINS=["http://localhost:3000"]
+      - ALLOWED_ORIGINS=["http://3.239.2.116:3000"]
       - ML_MODEL_PATH=ml/models/weather_lstm.pt
       - ML_SCALER_PATH=ml/models/scaler.pkl
     volumes:
@@ -28,11 +28,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_URL=http://3.239.2.166:8000
     depends_on:
       - backend
     volumes:
       - ./frontend:/app
       - /app/node_modules
       - /app/.next
-
