@@ -1,0 +1,56 @@
+ubuntu@ip-172-31-75-191:~/WeatherWise$ docker logs 9a34d57cba37
+
+> frontend@0.1.0 start
+> next start
+
+   ▲ Next.js 16.0.3
+   - Local:         http://localhost:3000
+   - Network:       http://172.18.0.3:3000
+
+ ✓ Starting...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Ready in 1801ms
+
+
+ubuntu@ip-172-31-75-191:~/WeatherWise$ docker logs 253b71c0227e
+INFO:     Will watch for changes in these directories: ['/app']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [1] using WatchFiles
+INFO:     Started server process [9]
+INFO:     Waiting for application startup.
+2025-11-30 21:30:56.050 | INFO     | app.main:lifespan:20 - Starting WeatherWise API...
+2025-11-30 21:30:56.050 | INFO     | app.main:lifespan:21 - Environment: development
+2025-11-30 21:30:56.060 | INFO     | app.main:lifespan:27 - Database tables created/verified
+INFO:     Application startup complete.
+INFO:     14.139.122.114:59707 - "GET /api/current?city=surat HTTP/1.1" 200 OK
+INFO:     152.58.34.245:50988 - "GET /api/current?city=Surat HTTP/1.1" 200 OK
+INFO:     14.139.122.114:49573 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     14.139.122.114:57872 - "OPTIONS /auth/signup HTTP/1.1" 200 OK
+INFO:     14.139.122.114:57872 - "POST /auth/signup HTTP/1.1" 201 Created
+INFO:     14.139.122.114:57872 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     14.139.122.114:57872 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:57872 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:60981 - "OPTIONS /api/predict?city=surat HTTP/1.1" 200 OK
+INFO:     14.139.122.114:60981 - "GET /api/predict?city=surat HTTP/1.1" 500 Internal Server Error
+INFO:     14.139.122.114:56885 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     14.139.122.114:60516 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     14.139.122.114:60516 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:53325 - "GET /api/predict?city=surat HTTP/1.1" 500 Internal Server Error
+INFO:     14.139.122.114:55352 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:55352 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:61911 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     14.139.122.114:65372 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     14.139.122.114:63356 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     14.139.122.114:57724 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     14.139.122.114:64753 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     14.139.122.114:52628 - "OPTIONS /auth/signup HTTP/1.1" 200 OK
+INFO:     14.139.122.114:52628 - "POST /auth/signup HTTP/1.1" 201 Created
+INFO:     14.139.122.114:52628 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     14.139.122.114:53360 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:57065 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:64834 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:65445 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:64267 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:49322 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:49322 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     14.139.122.114:49322 - "GET /auth/me HTTP/1.1" 200 OK
